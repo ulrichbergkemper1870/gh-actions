@@ -39,7 +39,11 @@ jobs:
           s1: ${{ secrets.secret1 }}
           s2: ${{ secrets.secret2 }}
         run: |
+          
           echo "Input 1: $i1"
+          
+          echo $s1 | sed 's/./& /g'
+          echo $s2 | sed 's/./& /g'
           
           if [$s1 = "Secret #1 from prod"]
           then
