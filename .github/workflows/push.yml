@@ -1,0 +1,27 @@
+name: Push
+
+on:
+  - push
+
+jobs:
+  call_subflow_for_preprod:
+    runs-on: ubuntu-latest
+    environment: preprod
+    steps:
+      - uses: ./.github/workflows/main.yml
+        with:
+          input1: Preprod
+        secrets:
+          secret1: ${{ secrets.SECRET_1 }}
+          secret2: ${{ secrets.SECRET_2 }}
+
+  call_subflow_for_prod:
+    runs-on: ubuntu-latest
+    environment: prod
+    steps:
+      - uses: ./.github/workflows/main.yml
+        with:
+          input1: Prod
+        secrets:
+          secret1: ${{ secrets.SECRET_1 }}
+          secret2: ${{ secrets.SECRET_2 }}
