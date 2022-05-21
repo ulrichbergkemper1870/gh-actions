@@ -7,15 +7,17 @@ jobs:
   call_subflow_for_preprod:
     uses: ./.github/workflows/main.yml
     with:
+      environment: preprod
       input1: Preprod
+    secrets:
       secret1: ${{ secrets.SECRET_1 }}
       secret2: ${{ secrets.SECRET_2 }}
-      environment: preprod
   call_subflow_for_prod:
     needs: call_subflow_for_preprod
     uses: ./.github/workflows/main.yml
     with:
       input1: Prod
       environment: prod
+    secrets:
       secret1: ${{ secrets.SECRET_1 }}
       secret2: ${{ secrets.SECRET_2 }}
