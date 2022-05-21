@@ -19,6 +19,8 @@ jobs:
     needs: call_subflow_for_preprod
     environment: prod
     steps:
+      - uses: actions/checkout@v3
+
       - uses: ./.github/workflows/main.yml
         with:
           input1: Prod
