@@ -1,0 +1,23 @@
+name: Dispatch workflow
+
+on:
+  workflow_dispatch:
+    inputs:
+      input1:
+        required: true
+        type: string
+        description: Just a plain text input variable
+      account:
+        required: true
+        type: environment
+        description: The environment to deploy to
+
+jobs:
+  call_subflow:
+    uses: ./.github/workflows/main.yml
+    with:
+      environment: ${{ inputs.account }}
+      input1: ${{ inputs.input1 }}
+    secrets:
+      secret1: ${{ secrets.SECRET_1 }}
+      secret2: ${{ secrets.SECRET_2 }}
