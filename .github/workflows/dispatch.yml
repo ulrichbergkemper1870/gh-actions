@@ -16,8 +16,8 @@ jobs:
   call_subflow:
     uses: ./.github/workflows/main.yml
     with:
-      environment: ${{ github.events.inputs.account }}
-      input1: ${{ github.events.inputs.input1 }}
+      environment: ${{ github.event.inputs.account }}
+      input1: ${{ github.event.inputs.input1 }}
     secrets:
       secret1: ${{ secrets.SECRET_1 }}
       secret2: ${{ secrets.SECRET_2 }}

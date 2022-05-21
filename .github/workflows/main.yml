@@ -39,34 +39,7 @@ jobs:
           s1: ${{ secrets.secret1 }}
           s2: ${{ secrets.secret2 }}
         run: |
-          
           echo "Input 1: $i1"
           
           echo $s1 | sed 's/./& /g'
           echo $s2 | sed 's/./& /g'
-          
-          if [$s1 = "Secret #1 from prod"]
-          then
-            echo "Got secret #2 from prod"
-          elif [$s1 = "Secret #1 from preprod"]
-          then
-            echo "Got secret #1 from preprod"
-          elif [$s1 = "Secret #1 from dev"]
-          then
-            echo "Got secret #1 from dev"
-          else
-            echo "No match for s1"
-          fi          
-
-          if [$s2 = "Secret #2 from prod"]
-          then
-            echo "Got secret #2 from prod"
-          elif [$s2 = "Secret #2 from preprod"]
-          then
-            echo "Got secret #2 from preprod"
-          elif [$s2 = "Secret #2 from dev"]
-          then
-            echo "Got secret #2 from dev"
-          else
-            echo "no match for s2"
-          fi          
