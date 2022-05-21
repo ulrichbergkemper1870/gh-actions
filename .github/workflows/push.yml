@@ -5,26 +5,17 @@ on:
 
 jobs:
   call_subflow_for_preprod:
-    runs-on: ubuntu-latest
-    environment: preprod
-    steps:
-      - uses: actions/checkout@v3
-
-      - uses: ./.github/workflows/main.yml
-        with:
-          input1: Preprod
-          secret1: ${{ secrets.SECRET_1 }}
-          secret2: ${{ secrets.SECRET_2 }}
-
+    uses: ./.github/workflows/main.yml
+    with:
+      input1: Preprod
+      secret1: ${{ secrets.SECRET_1 }}
+      secret2: ${{ secrets.SECRET_2 }}
+      environment: preprod
   call_subflow_for_prod:
-    runs-on: ubuntu-latest
     needs: call_subflow_for_preprod
-    environment: prod
-    steps:
-      - uses: actions/checkout@v3
-
-      - uses: ./.github/workflows/main.yml
-        with:
-          input1: Prod
-          secret1: ${{ secrets.SECRET_1 }}
-          secret2: ${{ secrets.SECRET_2 }}
+    uses: ./.github/workflows/main.yml
+    with:
+      input1: Prod
+      environment: prod
+      secret1: ${{ secrets.SECRET_1 }}
+      secret2: ${{ secrets.SECRET_2 }}
